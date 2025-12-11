@@ -2,11 +2,4 @@ Flask==3.0.0
 sqlite3
  os
 Werkzeug
-numpy
-moviepy
-pandas
-python-dotenv
-scikit-learn
-opencv-python
-requests
 gunicorn
