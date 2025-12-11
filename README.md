@@ -110,11 +110,6 @@ video_file = lecture.mp4
 ```
 Flask
 Werkzeug
-Gunicorn (if hosting)
-python-dotenv
-opencv-python (optional if used)
-numpy
-matplotlib
 ```
 Add more based on your project.
 ## Contributors
