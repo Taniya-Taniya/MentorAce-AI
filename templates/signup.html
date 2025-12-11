@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Signup - MentorAce AI</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/main.js" defer></script>
+</head>
+<body>
+  <!-- TOP NAVBAR -->
+<header style="
+width:100%;
+position:fixed;
+top:0; left:0;
+backdrop-filter:blur(12px);
+background:rgba(255,255,255,0.55);
+border-bottom:1px solid rgba(0,0,0,0.08);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:14px 40px;
+z-index:1000;
+">
+
+<!-- Brand -->
+<div style="
+  font-size:24px;
+  font-weight:700;
+  color:#ff8c5a;
+">
+  MentorAce <span style="color:#333;">AI</span>
+</div>
+
+<!-- Main Nav -->
+<nav style="display:flex; gap:28px; align-items:center;">
+  
+  <a href="/" style="
+    text-decoration:none;
+    font-size:16px;
+    color:#333;
+    padding:8px 14px;
+    border-radius:8px;
+    transition:0.25s;
+  " 
+  onmouseover="this.style.background='#ffe6d8'"
+  onmouseout="this.style.background='transparent'">
+    Home
+  </a>
+
+  <a href='/login' style="
+    text-decoration:none;
+    font-size:16px;
+    color:#333;
+    padding:8px 14px;
+    border-radius:8px;
+    transition:0.25s;
+    font-weight:600;
+    background:#ffe6d8;
+  "
+  onmouseover="this.style.background='#ffd4bd'"
+  onmouseout="this.style.background='#ffe6d8'">
+    Login
+  </a>
+
+  <a href='/signup' style="
+    text-decoration:none;
+    font-size:16px;
+    color:#333;
+    padding:8px 14px;
+    border-radius:8px;
+    transition:0.25s;
+    font-weight:600;
+  "
+  onmouseover="this.style.background='#ffe6d8'"
+  onmouseout="this.style.background='transparent'">
+    Sign Up
+  </a>
+
+</nav>
+
+<!-- Theme Switch -->
+<div style="display:flex; align-items:center; gap:8px;">
+  <span>☀️</span>
+
+  <label style="position:relative; width:46px; height:22px;">
+    <input type="checkbox" id="themeToggle" style="opacity:0; width:0; height:0;">
+    <span style="
+      position:absolute;
+      top:0; left:0; right:0; bottom:0;
+      background:#ccc;
+      border-radius:22px;
+      cursor:pointer;
+      transition:0.3s;
+    "></span>
+  </label>
+
+  <span>🌙</span>
+</div>
+
+</header>
+
+<!-- Padding so content doesn't hide behind fixed navbar -->
+<div style="height:80px;"></div>
+
+
+ 
+  <main class="page container">
+    <section class="card auth-card">
+      <h2>Create account</h2>
+      <form id="signupForm">
+        <label>Full name<input type="text" id="signupName" required></label>
+        <label>Email<input type="email" id="signupEmail" required></label>
+        <label>Password<input type="password" id="signupPassword" required></label>
+        <label>Role
+          <select id="signupRole">
+            <option value="mentor">Mentor</option>
+            <option value="institution">Institution</option>
+          </select>
+        </label>
+
+        <div class="row" style="justify-content:flex-end">
+          <button type="submit" class="btn primary">Create account</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <div id="loader" class="loader hidden"><div class="spinner"></div></div>
+</body>
+</html>
