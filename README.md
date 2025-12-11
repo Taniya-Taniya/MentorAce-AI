@@ -119,10 +119,10 @@ matplotlib
 Add more based on your project.
 ## Contributors
 - Tanvi Gupta — AI/ML Lead
-        Model building, scoring engine, bias mitigation
+        -- Model building, scoring engine, bias mitigation
 - Taniya — Backend/API Developer
-        FastAPI services, authentication, integrations
+        -- FastAPI services, authentication, integrations
 - Khushi Gupta — Frontend/UI Designer
-        React interface, dashboards, user experience
+        -- React interface, dashboards, user experience
 - Mahika Shukla — Product & Research Lead
-        Explainability, metric design, documentation, final pitch
+       -- Explainability, metric design, documentation, final pitch
