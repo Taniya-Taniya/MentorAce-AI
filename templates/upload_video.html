@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Upload Video - MentorAce AI</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/main.js" defer></script>
+</head>
+<body>
+  <header style="
+      width:100%;
+      position:fixed;
+      top:0; left:0;
+      backdrop-filter: blur(12px);
+      background:rgba(255,255,255,0.55);
+      border-bottom:1px solid rgba(0,0,0,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 40px;
+      z-index:1000;
+    ">
+
+    <!-- Brand -->
+    <div style="font-size:24px; font-weight:700; color:#ff8c5a;">
+      MentorAce <span style="color:#333;">AI</span>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav style="display:flex; gap:28px; align-items:center;">
+      <a href="/dashboard" style="
+        text-decoration:none; 
+        font-size:16px; 
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Dashboard</a>
+
+      <a href="/upload_video" style="
+        text-decoration:none;
+        font-size:16px;
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Upload Video</a>
+
+      <a href="/compare" style="
+        text-decoration:none;
+        font-size:16px;
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Compare</a>
+
+      <a href="/evaluation" style="
+        text-decoration:none;
+        font-size:16px;
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Evaluation</a>
+
+      <!-- Logout hidden (stays same) -->
+      <a href="/" id="logoutBtn" style="
+        display:none;
+        text-decoration:none;
+        font-size:16px;
+        color:#ff5a5a;
+        font-weight:600;
+        padding:8px 14px;
+        border-radius:8px;
+      ">Logout</a>
+    </nav>
+
+    <!-- Theme Switch -->
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span>☀️</span>
+      <label style="position:relative; width:46px; height:22px;">
+        <input type="checkbox" id="themeToggle" style="opacity:0; width:0; height:0;">
+        <span style="
+          position:absolute;
+          top:0; left:0; right:0; bottom:0;
+          background:#ccc;
+          border-radius:22px;
+          cursor:pointer;
+        "></span>
+      </label>
+      <span>🌙</span>
+    </div>
+  </header>
+
+
+  <nav class="nav">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/upload_video" class="active">Upload Video</a>
+    <a href="/compare">Compare</a>
+    <a href="/evaluation">Evaluation</a>
+    <a href="/" class="auth" id="logoutBtn" style="display:none;">Logout</a>
+  </nav>
+
+ 
+  <main class="page container">
+    <section class="card upload-card">
+      <h2>Upload Mentor Video</h2>
+      <p class="muted">Accepted: mp4 / mov. Max size: your local limit.</p>
+
+      <form id="uploadForm" enctype="multipart/form-data">
+        <label class="file-drop" id="fileDrop" style="position: relative; cursor: pointer; width: 100%; max-width: 500px;">
+          <input type="file" name="video" id="videoInput" accept="video/*" />
+          <div class="file-drop-text">Drag & drop or click to select a video</div>
+        </label>
+
+        <div class="row" style="gap:12px;margin-top:12px">
+          <button type="button" id="analyzeBtn" class="btn primary">Upload & Analyze</button>
+          <button type="button" id="clearBtn" class="btn ghost">Clear</button>
+        </div>
+
+        <div id="uploadStatus" class="muted small" style="margin-top:10px"></div>
+      </form>
+    </section>
+
+    <section class="card preview" id="previewCard" style="display:none;">
+      <h3>Preview</h3>
+      <video id="previewVideo" controls style="width:100%;border-radius:8px"></video>
+    </section>
+  </main>
+
+  <div id="loader" class="loader hidden"><div class="spinner"></div></div>
+</body>
+</html>
