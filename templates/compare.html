@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Compare Mentors - MentorAce AI</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="/static/js/main.js" defer></script>
+
+  <!-- AOS Animation -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+
+<body>
+
+<!-- Top Bar -->
+<header style="
+      width:100%;
+      position:fixed;
+      top:0; left:0;
+      backdrop-filter: blur(12px);
+      background:rgba(255,255,255,0.55);
+      border-bottom:1px solid rgba(0,0,0,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 40px;
+      z-index:1000;
+    ">
+
+    <!-- Brand -->
+    <div style="font-size:24px; font-weight:700; color:#ff8c5a;">
+      MentorAce <span style="color:#333;">AI</span>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav style="display:flex; gap:28px; align-items:center;">
+      <a href="/dashboard" style="
+        text-decoration:none; 
+        font-size:16px; 
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Dashboard</a>
+
+      <a href="/upload_video" style="
+        text-decoration:none;
+        font-size:16px;
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Upload Video</a>
+
+      <a href="/compare" style="
+        text-decoration:none;
+        font-size:16px;
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Compare</a>
+
+      <a href="/evaluation" style="
+        text-decoration:none;
+        font-size:16px;
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Evaluation</a>
+
+      <!-- Logout hidden (stays same) -->
+      <a href="/" id="logoutBtn" style="
+        display:none;
+        text-decoration:none;
+        font-size:16px;
+        color:#ff5a5a;
+        font-weight:600;
+        padding:8px 14px;
+        border-radius:8px;
+      ">Logout</a>
+    </nav>
+
+    <!-- Theme Switch -->
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span>☀️</span>
+      <label style="position:relative; width:46px; height:22px;">
+        <input type="checkbox" id="themeToggle" style="opacity:0; width:0; height:0;">
+        <span style="
+          position:absolute;
+          top:0; left:0; right:0; bottom:0;
+          background:#ccc;
+          border-radius:22px;
+          cursor:pointer;
+        "></span>
+      </label>
+      <span>🌙</span>
+    </div>
+  </header>
+
+
+<!-- Navigation -->
+<nav class="nav pastel-nav" data-aos="fade-down" data-aos-delay="200">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/upload_video">Upload</a>
+    <a class="active" href="/compare">Compare</a>
+    <a href="/evaluation">Evaluation</a>
+    <a href="/" class="auth" id="logoutBtn" style="display:none;">Logout</a>
+</nav>
+
+<!-- MAIN PAGE -->
+<main class="page container">
+
+  <!-- Floating pastel shapes -->
+  <div class="float-circle c1"></div>
+  <div class="float-circle c2"></div>
+  <div class="float-circle c3"></div>
+
+  <section class="card pastel-card" data-aos="fade-up">
+      <h2 class="section-title">Compare Two Mentors</h2>
+
+      <p class="subtitle">
+        Upload two mentor videos and see side-by-side AI comparisons.
+      </p>
+
+      <div class="row centered" style="gap:18px; margin-top:20px;" data-aos="zoom-in">
+
+        <label class="file-drop pastel-drop small" style="position: relative; cursor: pointer; min-width: 180px;">
+          <input type="file" id="m1" accept="video/*" />
+          <div style="pointer-events: none;">Upload Mentor 1</div>
+        </label>
+
+        <label class="file-drop pastel-drop small" style="position: relative; cursor: pointer; min-width: 180px;">
+          <input type="file" id="m2" accept="video/*" />
+          <div style="pointer-events: none;">Upload Mentor 2</div>
+        </label>
+
+        <button class="btn pastel-btn" id="compareBtn">Compare</button>
+      </div>
+      
+      <div id="compareStatus" class="muted small" style="margin-top:10px; text-align: center;"></div>
+
+      <!-- Results -->
+      <div class="comparison-result" id="comparisonResult" data-aos="fade-up" style="margin-top:26px; display:none;">
+
+        <div class="row" style="gap:20px;">
+          <div class="mini-card pastel-mini">
+            <h4>Mentor A</h4>
+            <div id="m1Score" class="score-box">--</div>
+          </div>
+
+          <div class="mini-card pastel-mini">
+            <h4>Mentor B</h4>
+            <div id="m2Score" class="score-box">--</div>
+          </div>
+        </div>
+
+        <div class="chart-card pastel-chart" data-aos="zoom-in">
+          <h4>Side-by-side Metrics</h4>
+          <canvas id="compareChart" height="180"></canvas>
+        </div>
+      </div>
+  </section>
+
+</main>
+
+<!-- Loader -->
+<div id="loader" class="loader hidden"><div class="spinner"></div></div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+</body>
+</html>
