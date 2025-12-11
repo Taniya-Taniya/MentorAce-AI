@@ -46,11 +46,12 @@ python app.py
 ```
 ## Architecture Overview
 ### Main Modules
-Module	            Purpose
-- auth	              Handles signup, login, logout
-- mentor	            Upload videos, evaluate mentor scores
-- institution	      Analytics, institution info
-- core Flask app	    Routes for pages + blueprint registration
+|Module	           |  Purpose                                 |
+|------------------|------------------------------------------|
+|auth	             | Handles signup, login, logout            | 
+|mentor	           | Upload videos, evaluate mentor scores    | 
+|institution	     | Analytics, institution info              | 
+|core Flask app	   | Routes for pages + blueprint registration|
 
 ## How to Run Locally
 - Install dependencies
