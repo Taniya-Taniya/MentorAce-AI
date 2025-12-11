@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MentorAce AI - Home</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/main.js" defer></script>
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+
+<body>
+
+
+<!-- Dark Mode Toggle (TOP-LEFT FIXED) -->
+<div class="theme-switch fixed-top-left">
+    <span class="mode-icon">☀️</span>
+    <label class="switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider round"></span>
+    </label>
+    <span class="mode-icon">🌙</span>
+</div>
+
+
+<!-- NAVBAR -->
+<nav class="navbar" data-aos="fade-down">
+    <div class="logo">MentorAce <span>AI</span></div>
+    <ul class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/upload_video">Upload</a>
+        <a href="/evaluation">Evaluation</a>
+        <a href="/compare">Compare</a>
+        <a href="/signup">Signup</a>
+        <a href="/login">Login</a>
+    </ul>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" data-aos="fade-up">
+    <h1 class="title">Welcome to <span>MentorAce AI</span></h1>
+    <p class="subtitle">Your intelligent platform for evaluating, scoring, and comparing mentors using AI.</p>
+
+    <a href="/dashboard" class="primary-btn">Go to Dashboard</a>
+
+    <!-- Floating shapes for unique style -->
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+</section>
+
+<!-- Footer -->
+<footer data-aos="fade-up">
+    <p>© 2025 MentorAce AI. Crafted with ❤️</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+</body>
+</html>
