@@ -62,12 +62,12 @@ http://127.0.0.1:5000
 ```
 ## API / Endpoints
 ### Authentication
-|Endpoint	|Method	|Description
-|/signup	|GET	|Signup page
-|/signup	|POST	|Create account
-|/login	|GET	|Login page
-|/login	|POST	|Authenticate user
-|/logout	|GET	|Logout
+|Endpoint	|Method	|Description|
+|/signup	|GET	|Signup page|
+|/signup	|POST	|Create account|
+|/login	|GET	|Login page|
+|/login	|POST	|Authenticate user|
+|/logout	|GET	|Logout|
 
 ### Mentor Evaluation
 Endpoint	Method	Description
