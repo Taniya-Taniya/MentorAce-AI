@@ -85,25 +85,29 @@ http://127.0.0.1:5000
 |/	|GET	|Dashboard with graphs, avg score, top mentors|
 
 ## Example Inputs/Outputs
-Input Example (Upload Video POST)
+### Input Example (Upload Video POST)
+```
 mentor_name = "Rahul"
 video_file = lecture.mp4
-
-Output Example
+```
+### Output Example
+```
 {
   "mentor": "Rahul",
   "score": 82,
   "status": "Evaluation Successful"
 }
-
-Compare Output
+```
+### Compare Output
+```
 {
   "mentor_1": { "name": "Rahul", "score": 82 },
   "mentor_2": { "name": "Priya", "score": 76 },
   "better_performer": "Rahul"
 }
-
-List of Dependencies
+```
+## List of Dependencies
+```
 Flask
 Werkzeug
 Gunicorn (if hosting)
@@ -111,6 +115,14 @@ python-dotenv
 opencv-python (optional if used)
 numpy
 matplotlib
-
-
+```
 Add more based on your project.
+## Contributors
+- Tanvi Gupta — AI/ML Lead
+        Model building, scoring engine, bias mitigation
+- Taniya — Backend/API Developer
+        FastAPI services, authentication, integrations
+- Khushi Gupta — Frontend/UI Designer
+        React interface, dashboards, user experience
+- Mahika Shukla — Product & Research Lead
+        Explainability, metric design, documentation, final pitch
