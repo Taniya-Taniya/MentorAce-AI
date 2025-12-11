@@ -60,3 +60,51 @@ python app.py
 ```
 http://127.0.0.1:5000
 ```
+## API / Endpoints
+### Authentication
+|Endpoint	|Method	|Description
+|/signup	|GET	|Signup page
+|/signup	|POST	|Create account
+|/login	|GET	|Login page
+|/login	|POST	|Authenticate user
+|/logout	|GET	|Logout
+
+### Mentor Evaluation
+Endpoint	Method	Description
+/upload_video	GET	Upload form
+/upload_video	POST	Save video, generate score
+/evaluation/<mentor_id>	GET	Show score
+/compare	GET/POST	Compare two mentor scores
+Dashboard
+Endpoint	Method	Description
+/	GET	Dashboard with graphs, avg score, top mentors
+Example Inputs/Outputs
+Input Example (Upload Video POST)
+mentor_name = "Rahul"
+video_file = lecture.mp4
+
+Output Example
+{
+  "mentor": "Rahul",
+  "score": 82,
+  "status": "Evaluation Successful"
+}
+
+Compare Output
+{
+  "mentor_1": { "name": "Rahul", "score": 82 },
+  "mentor_2": { "name": "Priya", "score": 76 },
+  "better_performer": "Rahul"
+}
+
+List of Dependencies
+Flask
+Werkzeug
+Gunicorn (if hosting)
+python-dotenv
+opencv-python (optional if used)
+numpy
+matplotlib
+
+
+Add more based on your project.
