@@ -81,6 +81,7 @@ http://127.0.0.1:5000
 
 ### Dashboard
 |Endpoint	|Method	|Description|
+|---------|-------|-----------|
 |/	|GET	|Dashboard with graphs, avg score, top mentors|
 
 ## Example Inputs/Outputs
