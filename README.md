@@ -72,11 +72,13 @@ http://127.0.0.1:5000
 |/logout	|GET	  |Logout        |
 
 ### Mentor Evaluation
-Endpoint	Method	Description
-/upload_video	GET	Upload form
-/upload_video	POST	Save video, generate score
-/evaluation/<mentor_id>	GET	Show score
-/compare	GET/POST	Compare two mentor scores
+|Endpoint	                |Method	     |Description|
+|-------------------------|------------|--------------|
+|/upload_video	          |GET	       |Upload form|
+|/upload_video	          |POST	       |Save video, generate score|
+|/evaluation/<mentor_id>	|GET	       |Show score|
+|/compare	                |GET/POST	   | Compare two mentor scores|
+
 Dashboard
 Endpoint	Method	Description
 /	GET	Dashboard with graphs, avg score, top mentors
