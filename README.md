@@ -79,10 +79,11 @@ http://127.0.0.1:5000
 |/evaluation/<mentor_id>	|GET	       |Show score|
 |/compare	                |GET/POST	   | Compare two mentor scores|
 
-Dashboard
-Endpoint	Method	Description
-/	GET	Dashboard with graphs, avg score, top mentors
-Example Inputs/Outputs
+### Dashboard
+|Endpoint	|Method	|Description|
+|/	|GET	|Dashboard with graphs, avg score, top mentors|
+
+## Example Inputs/Outputs
 Input Example (Upload Video POST)
 mentor_name = "Rahul"
 video_file = lecture.mp4
