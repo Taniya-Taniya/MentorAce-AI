@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Evaluation - MentorAce AI</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+
+  <script src="/static/js/main.js" defer></script>
+  <script defer>
+    async function loadEvaluation() {
+      // First check if we have data from upload
+      const storedData = sessionStorage.getItem("evaluationData");
+      let data;
+      
+      if (storedData) {
+        data = JSON.parse(storedData);
+        sessionStorage.removeItem("evaluationData"); // Clear after use
+      } else {
+        // Otherwise fetch from API
+        try {
+          const res = await fetch('/mentor/latest?mentor_id=1');
+          if (!res.ok) {
+            console.log("No evaluation data available yet");
+            return;
+          }
+          data = await res.json();
+        } catch(e) {
+          console.error("Eval load failed", e);
+          return;
+        }
+      }
+
+      if (data) {
+        const overallScoreEl = document.getElementById("overallScore");
+        const strengthListEl = document.getElementById("strengthList");
+        const explainTextEl = document.getElementById("explainText");
+        const metricBarsEl = document.getElementById("metricBars");
+
+        if (overallScoreEl) {
+          overallScoreEl.innerText = data.overall || data.overall_score || "--";
+        }
+        
+        if (strengthListEl && data.strengths) {
+          strengthListEl.innerHTML = data.strengths.map(s => `<li>${s}</li>`).join("");
+        }
+
+        if (explainTextEl) {
+          explainTextEl.innerText = data.explanation || data.explain || "No explanation available.";
+        }
+
+        if (metricBarsEl && data.metrics) {
+          const ctx = metricBarsEl.getContext("2d");
+          // Destroy existing chart if it exists
+          if (window.metricChart) {
+            window.metricChart.destroy();
+          }
+          window.metricChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: Object.keys(data.metrics),
+              datasets: [{
+                label: 'Score',
+                data: Object.values(data.metrics),
+                backgroundColor: 'rgba(255, 182, 160, 0.6)',
+                borderRadius: 8
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { display: false }
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  max: 100
+                }
+              }
+            }
+          });
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", loadEvaluation);
+  </script>
+</head>
+
+<body>
+  <header style="
+      width:100%;
+      position:fixed;
+      top:0; left:0;
+      backdrop-filter: blur(12px);
+      background:rgba(255,255,255,0.55);
+      border-bottom:1px solid rgba(0,0,0,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 40px;
+      z-index:1000;
+    ">
+
+    <!-- Brand -->
+    <div style="font-size:24px; font-weight:700; color:#ff8c5a;">
+      MentorAce <span style="color:#333;">AI</span>
+    </div>
+
+    <!-- NAV LINKS -->
+    <nav style="display:flex; gap:28px; align-items:center;">
+      <a href="/dashboard" style="
+        text-decoration:none; 
+        font-size:16px; 
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Dashboard</a>
+
+      <a href="/upload_video" style="
+        text-decoration:none;
+        font-size:16px;
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Upload Video</a>
+
+      <a href="/compare" style="
+        text-decoration:none;
+        font-size:16px;
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Compare</a>
+
+      <a href="/evaluation" style="
+        text-decoration:none;
+        font-size:16px;
+        color:#333;
+        padding:8px 14px;
+        border-radius:8px;
+        transition:0.25s;
+      "
+      onmouseover="this.style.background='#ffe6d8'"
+      onmouseout="this.style.background='transparent'"
+      >Evaluation</a>
+
+      <!-- Logout hidden (stays same) -->
+      <a href="/" id="logoutBtn" style="
+        display:none;
+        text-decoration:none;
+        font-size:16px;
+        color:#ff5a5a;
+        font-weight:600;
+        padding:8px 14px;
+        border-radius:8px;
+      ">Logout</a>
+    </nav>
+
+    <!-- Theme Switch -->
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span>☀️</span>
+      <label style="position:relative; width:46px; height:22px;">
+        <input type="checkbox" id="themeToggle" style="opacity:0; width:0; height:0;">
+        <span style="
+          position:absolute;
+          top:0; left:0; right:0; bottom:0;
+          background:#ccc;
+          border-radius:22px;
+          cursor:pointer;
+        "></span>
+      </label>
+      <span>🌙</span>
+    </div>
+  </header>
+
+
+  <main class="page container">
+    <section class="card">
+      <h2>Evaluation Result</h2>
+
+      <div class="row">
+        <div class="left-col">
+          <div class="score-circle" id="overallScore">--</div>
+          <p class="muted">Overall Mentor Score</p>
+        </div>
+
+        <div class="right-col">
+          <canvas id="metricBars"></canvas>
+          <div class="strengths">
+            <h4>Strengths</h4>
+            <ul id="strengthList"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card small explain">
+        <h4>Why this score?</h4>
+        <p id="explainText">--</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
